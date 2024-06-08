@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Calculator</title>
+</head>
+<body>
+    <h1>Time Calculator</h1>
+    <form id="dateForm">
+        <label for="day">Day (dd):</label>
+        <input type="number" id="day" name="day" min="1" max="31" required>
+        <br>
+        <label for="month">Month (mm):</label>
+        <input type="number" id="month" name="month" min="1" max="12" required>
+        <br>
+        <label for="year">Year (yyyy):</label>
+        <input type="number" id="year" name="year" required>
+        <br>
+        <button type="submit">Calculate Duration</button>
+    </form>
+    <p id="result"></p>
+
+
+    
+    <script >
+        document.getElementById('dateForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const day = parseInt(document.getElementById('day').value);
+    const month = parseInt(document.getElementById('month').value) - 1; // JavaScript months are 0-11
+    const year = parseInt(document.getElementById('year').value);
+
+    const inputDate = new Date(year, month, day);
+    const currentDate = new Date();
+
+    if (isNaN(inputDate.getTime())) {
+        document.getElementById('result').textContent = "Invalid date. Please enter a valid date.";
+        return;
+    }
+
+    const duration = calculateDuration(inputDate, currentDate);
+    document.getElementById('result').textContent = `Duration: ${duration.years} years, ${duration.months} months, and ${duration.days} days.`;
+});
+
+function calculateDuration(startDate, endDate) {
+    let years = endDate.getFullYear() - startDate.getFullYear();
+    let months = endDate.getMonth() - startDate.getMonth();
+    let days = endDate.getDate() - startDate.getDate();
+
+    if (days < 0) {
+        months--;
+        const previousMonth = new Date(endDate.getFullYear(), endDate.getMonth(), 0);
+        days += previousMonth.getDate();
+    }
+
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+
+    return { years, months, days };
+}
+
+    </script>
+</body>
+</html>
