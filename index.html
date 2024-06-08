@@ -14,6 +14,17 @@
   <style>
     .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 100%, 77%); text-decoration: none;}
+
+    .display{
+      font-size: 5rem;
+    }
+
+    @media (max-width: 500px) { /* Small devices (landscape phones, less than 768px) */
+            .display {
+                font-size: 3rem; /* Example smaller font size */
+                
+            }
+        }
   </style>
 </head>
 <body style="background-color: hsl(0, 0%, 86%)">
@@ -48,7 +59,7 @@
       </form>
       
   
-      <div class="display fw-bold lh-1 mt-4" style="font-size: 5rem;">
+      <div class="display fw-bolder  lh-1 mt-4" >
         <i><p > <span id="year-display" style="color: hsl(259, 100%, 65%);">--</span> years</p></i>
         <i><p > <span id="month-display" style="color: hsl(259, 100%, 65%);">--</span> months</p></i>
         <i><p > <span id="day-display" style="color: hsl(259, 100%, 65%);">--</span> days</p></i>
